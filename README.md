@@ -1,0 +1,1 @@
+# luydi_manda_as_fotos
