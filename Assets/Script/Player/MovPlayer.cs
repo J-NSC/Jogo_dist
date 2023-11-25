@@ -6,11 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Player : NetworkBehaviour
+public class MovPlayer : NetworkBehaviour
 {
     NetworkVariable<Vector3> position = new NetworkVariable<Vector3>();
 
-    float dir;
+    public Vector2 Dir { get; private set; }
     Rigidbody2D rb;
     private float speed = 3f;
 
@@ -18,20 +18,14 @@ public class Player : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    public override void OnNetworkDespawn()
-    {
-        // if (IsOwner)
-        // {
-        //     Move();
-        // }
-    }
+    
     
     void Update()
     {
-        if (!IsOwner) return;
+        // if (!IsOwner) return;
 
-        dir = Input.GetAxisRaw("Horizontal");
+        Dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
 
     }
 
@@ -42,23 +36,9 @@ public class Player : NetworkBehaviour
 
     public void Mover()
     {
-        rb.velocity = new Vector2(speed * dir, rb.velocity.y);
+        rb.MovePosition(rb.position + Dir * (speed * Time.deltaTime));
     }
 
-    // public void Move()
-    // {
-    //     if (NetworkManager.Singleton.IsServer)
-    //     {
-    //         var randomPosition = GetRandomPositionOnPlane();
-    //         transform.position = randomPosition;
-    //         position.Value = randomPosition;
-    //     }
-    //     else
-    //     {
-    //         SubmitPositionRequestServerRpc();
-    //     }
-    // }
-    
     [ServerRpc]
     void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
     {
@@ -70,7 +50,4 @@ public class Player : NetworkBehaviour
         return new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
     }
 
-
-    
-    
 }
