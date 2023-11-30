@@ -6,19 +6,29 @@ using UnityEngine.UI;
 public class CharacterSelectButton : MonoBehaviour
 {
     public Image iconImage;
+    [SerializeField] private GameObject disableOverlay;
+    [SerializeField] Button button;
 
     CharacterDisplaySelect characterSelect;
-    Character character;
+    public Character Character { get; private set; }
+    public bool IsDisable { get; private set; }
     
     public void SetCharacter(CharacterDisplaySelect characterSelect, Character character)
     {
         iconImage.sprite = character.Icon;
         this.characterSelect = characterSelect;
-        this.character = character;
+        Character = character;
     }
 
     public void SelectCharacter()
     {
-        characterSelect.Select(character);
+        characterSelect.Select(Character);
+    }
+
+    public void SetDisable()
+    {
+        IsDisable = true; 
+        disableOverlay.SetActive(true);
+        button.interactable = false;
     }
 }

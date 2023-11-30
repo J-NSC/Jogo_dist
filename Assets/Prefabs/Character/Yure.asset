@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fce2f6c377e13d4f9fdc992471772b4, type: 3}
   m_Name: Yure
   m_EditorClassIdentifier: 
-  id: -1
+  id: 2
   displayName: Yure
   icon: {fileID: 21300000, guid: 8bd37348c71b7c24ebcef2842c60ff06, type: 3}
+  introPrefab: {fileID: 2698379155621145174, guid: 174eb79cd8ce9214c9906ad5a84d5b88, type: 3}

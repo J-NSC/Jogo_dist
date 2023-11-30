@@ -16,7 +16,7 @@ public class PlayerCard : MonoBehaviour
    {
       if (state.characterId != -1)
       {
-         var character = characterDatabase.getCharacterById(state.characterId);
+         var character = characterDatabase.GetCharacterById(state.characterId);
 
          characterIconImage.sprite = character.Icon;
          characterIconImage.enabled = true;
@@ -27,7 +27,7 @@ public class PlayerCard : MonoBehaviour
          characterIconImage.enabled = false;
       }
 
-      playerNameText.text = $"player {state.characterId}";
+      playerNameText.text =  state.IsLockedIn ? $"player {state.characterId}" : $"Player {state.clienteId} (Picking ...)";
       
       visuals.SetActive(true);
    }

@@ -6,25 +6,29 @@ using UnityEngine;
 
 public struct CharacterSelectState : INetworkSerializable, IEquatable<CharacterSelectState>
 {
-    public ulong clinetId;
+    public ulong clienteId;
     public int characterId;
+    public bool IsLockedIn; 
 
-    public CharacterSelectState(ulong clinetId, int characterId = -1)
+    public CharacterSelectState(ulong clienteId, int characterId = -1, bool isLockedIn = false)
     {
-        this.clinetId = clinetId;
+        this.clienteId = clienteId;
         this.characterId = characterId;
+        IsLockedIn = isLockedIn;
     }
     
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
-        serializer.SerializeValue(ref clinetId);
+        serializer.SerializeValue(ref clienteId);
         serializer.SerializeValue(ref characterId);
+        serializer.SerializeValue(ref IsLockedIn);
         
     }
 
     public bool Equals(CharacterSelectState other)
     {
-        return clinetId == other.clinetId &&
-               characterId == other.characterId;
+        return clienteId == other.clienteId &&
+               characterId == other.characterId &&
+               IsLockedIn == other.IsLockedIn;
     }
 }

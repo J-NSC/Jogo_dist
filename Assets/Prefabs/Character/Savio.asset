@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fce2f6c377e13d4f9fdc992471772b4, type: 3}
   m_Name: Savio
   m_EditorClassIdentifier: 
-  id: -1
+  id: 1
   displayName: Savio
   icon: {fileID: 21300000, guid: a1b45dc1a0643f74cb2dad4f433c650c, type: 3}
+  introPrefab: {fileID: 166300682760197486, guid: ad98084a5672a6b40a9f0d9cdc34b222, type: 3}

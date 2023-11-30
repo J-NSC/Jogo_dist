@@ -183,6 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconImage: {fileID: 911025431141497785}
+  disableOverlay: {fileID: 8291597779687146440}
+  button: {fileID: 0}
 --- !u!1 &8291597779687146440
 GameObject:
   m_ObjectHideFlags: 0
